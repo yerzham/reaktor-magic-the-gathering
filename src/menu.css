@@ -1,0 +1,193 @@
+.btn-link {
+  text-align: left;
+}
+
+.sidebar {
+  background-color: #4b4b4b;
+  height: 100%;
+  width: 320px;
+  overflow-y: auto;
+}
+
+.canvas {
+  background-color: #157347;
+  overflow-y: scroll;
+}
+
+.canvas-inner {
+  background-color: #e5fcf6;
+  margin-right: 320px;
+  min-height: 100%;
+}
+
+body {
+  color: #121414;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+html {
+  height: -webkit-fill-available;
+}
+
+#root {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100vh;
+  height: -webkit-fill-available;
+  max-height: 100vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.b-example-divider {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: solid rgba(0, 0, 0, 0.15);
+  border-width: 1px 0;
+  box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
+    inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
+}
+
+.bi {
+  vertical-align: -0.125em;
+  pointer-events: none;
+  fill: currentColor;
+}
+
+.dropdown-toggle {
+  outline: 0;
+}
+
+.nav-flush .nav-link {
+  border-radius: 0;
+}
+
+.nav-title {
+  color: rgb(235, 235, 235);
+}
+
+.btn-toggle {
+  color: rgb(235, 235, 235);
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  font-weight: 600;
+  color: rgb(235, 235, 235);
+  background-color: transparent;
+  border: 0;
+}
+.btn-toggle:hover,
+.btn-toggle:focus,
+.btn-toggle[aria-expanded="true"]:focus,
+.btn-toggle[aria-expanded="true"]:hover,
+.btn-toggle-nav a:hover,
+.btn-toggle-nav a:focus {
+  color: rgba(0, 0, 0, 0.85);
+  background-color: #d2f4ea;
+}
+
+.btn-toggle::before {
+  width: 1.25em;
+  line-height: 0;
+  content: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><path fill='none' stroke='rgba(235,235,235)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/></svg>");
+  transition: none;
+  transform-origin: 0.5em 50%;
+}
+
+.btn-toggle:focus::before,
+.btn-toggle:hover::before {
+  content: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><path fill='none' stroke='rgba(0,0,0, 0.5)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/></svg>");
+}
+
+.btn-toggle:focus::before {
+  transition: transform 0.35s ease;
+}
+
+.btn-toggle[aria-expanded="true"]::before {
+  transform: rotate(90deg);
+}
+
+.btn-toggle-nav a {
+  color: rgb(235, 235, 235);
+  display: inline-flex;
+  padding: 0.1875rem 0.5rem;
+  margin-top: 0.125rem;
+  margin-left: 1.25rem;
+  text-decoration: none;
+}
+
+.scrollarea {
+  overflow-y: auto;
+}
+
+.fw-semibold {
+  font-weight: 600;
+}
+.lh-tight {
+  line-height: 1.25;
+}
+
+.loading-overlay {
+  display: none;
+  background: rgba(26, 26, 26, 0.7);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  top: 0;
+}
+
+.loading-overlay-image-container {
+  display: none;
+  position: fixed;
+  z-index: 7;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loading-overlay-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+}
+
+.demo:empty {
+  margin: auto;
+  height: 600px; /* change height to see repeat-y behavior */
+
+  background-image: linear-gradient(
+      90deg,
+      rgba(228, 252, 245, 0),
+      rgba(228, 252, 245, 0.5) 50%,
+      rgba(228, 252, 245, 0) 80%
+    ),
+    linear-gradient(lightgray 50px, transparent 0),
+    linear-gradient(lightgray 20px, transparent 0),
+    linear-gradient(lightgray 20px, transparent 0),
+    linear-gradient(lightgray 20px, transparent 0),
+    linear-gradient(lightgray 20px, transparent 0),
+    linear-gradient(lightgray 20px, transparent 0),
+    linear-gradient(lightgray 20px, transparent 0),
+    linear-gradient(lightgray 20px, transparent 0);
+
+  background-repeat: no-repeat;
+
+  background-size: 150px 600px, /* highlight */ 300px 100px, 500px 50px,
+    600px 50px, 600px 50px, 500px 50px, 700px 50px, 600px 50px, 600px 50px;
+
+  background-position: -100px 0, /* highlight */ 0 0, 0 90px, 0 130px, 0 170px,
+    0 210px, 0 250px, 0 290px, 0 330px;
+
+  animation: shine 0.7s infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 700px 0, /* move highlight to right */ 0 0, 0 90px,
+      0 130px, 0 170px, 0 210px, 0 250px, 0 290px, 0 330px;
+  }
+}

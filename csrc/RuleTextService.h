@@ -1,0 +1,4 @@
+#ifndef RULE_TEXT_SERVICE
+#define RULE_TEXT_SERVICE
+
+#endif // RULE_TEXT_SERVICE

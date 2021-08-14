@@ -29,11 +29,7 @@ const App = () => {
               ></Route>
               <Route exact path="/rule/:rule" component={RuleIsolated}></Route>
               <Route path="/">
-                <h1>Welcome</h1>
-                <h1>Welcome</h1>
-                <h1>Welcome</h1>
-                <h1>Welcome</h1>
-                <h1>Welcome</h1>
+                <h1>Welcome. Feel free to explore the game rules.</h1>
               </Route>
             </Switch>
           </div>

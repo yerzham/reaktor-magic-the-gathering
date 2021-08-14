@@ -42,6 +42,11 @@ class ChapterItem extends Component {
       if (!this.props.loadingChapter && this.state.filtering == true) {
         this.setState({ filtering: false });
       }
+      if (!this.props.loadingChapter && window.location.hash) {
+        const id = window.location.hash.replace("#", "");
+        const element = document.getElementById(id);
+        element.scrollIntoView();
+      }
     });
   }
 

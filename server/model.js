@@ -40,6 +40,7 @@ function dataFiltered(f) {
 }
 
 var download = function (url, dest, cb) {
+  fs.unlinkSync(dest);
   var file = fs.createWriteStream(dest);
   var request = http
     .get(url, function (response) {

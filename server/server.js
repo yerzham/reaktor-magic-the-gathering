@@ -24,14 +24,6 @@ fastify.get("/rule/:rule", async (request, reply) => {
 
 const start = async () => {
   try {
-    if (process.env.NODE_ENV == "production") {
-      await fastify.listen(3000, "0.0.0.0", (err, address) => {
-        if (err) {
-          fastify.log.error(err);
-          process.exit(1);
-        }
-      });
-    }
     await fastify.listen(3000);
   } catch (err) {
     fastify.log.error(err);

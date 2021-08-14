@@ -156,6 +156,7 @@ html {
 }
 
 .demo:empty {
+  opacity: 0;
   margin: auto;
   height: 600px; /* change height to see repeat-y behavior */
 
@@ -182,12 +183,18 @@ html {
   background-position: -100px 0, /* highlight */ 0 0, 0 90px, 0 130px, 0 170px,
     0 210px, 0 250px, 0 290px, 0 330px;
 
-  animation: shine 0.7s infinite;
+  animation: appear 0s 0.25s forwards, shine 0.7s infinite;
 }
 
 @keyframes shine {
   to {
     background-position: 700px 0, /* move highlight to right */ 0 0, 0 90px,
       0 130px, 0 170px, 0 210px, 0 250px, 0 290px, 0 330px;
+  }
+}
+
+@keyframes appear {
+  to {
+    opacity: 1;
   }
 }

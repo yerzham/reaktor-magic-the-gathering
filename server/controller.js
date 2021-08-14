@@ -23,11 +23,6 @@ fetchContents = async (request, reply) => {
 };
 
 fetchChapter = async (request, reply) => {
-  const wait = (ms) =>
-    new Promise((resolve) => {
-      setTimeout(resolve, ms);
-    });
-  await wait(1000);
   try {
     if (fileRead) {
       var chapterData;

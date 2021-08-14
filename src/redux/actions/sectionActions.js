@@ -31,8 +31,6 @@ export const readTableOfContents = () => {
     return axios
       .get("/api/")
       .then(({ data }) => {
-        console.log(data);
-        console.log("success");
         dispatch(fetchSectionsSuccess(data));
       })
       .catch((error) => dispatch(fetchSectionsFailure(error)));

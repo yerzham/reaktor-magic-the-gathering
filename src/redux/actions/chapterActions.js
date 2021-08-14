@@ -35,7 +35,6 @@ export const fetchChapterCancelled = () => ({
 export const cancelChapterRequest = () => {
   return (dispatch) => {
     source.cancel("Operation cancelled by the user.");
-    console.log("REQUEST CANCELLED!!!");
     source = CancelToken.source();
     dispatch(fetchChapterCancelled());
   };

@@ -19,7 +19,8 @@ class ChapterItem extends Component {
 
   static updateChapter(props, state) {
     props.cancelChapterRequest();
-    if (!window.location.hash) document.getElementById("canvas").scrollTop = 0;
+    if (props.chapter.name != undefined && !window.location.hash)
+      document.getElementById("canvas").scrollTop = 0;
     state.prevChapter = props.match.params.chapter || "";
     props.readChapter(state.prevChapter);
     return state;
@@ -48,7 +49,6 @@ class ChapterItem extends Component {
     if (
       !props.loading &&
       props.match.params.chapter != undefined &&
-      props.chapter.name != undefined &&
       props.match.params.chapter != state.prevChapter
     ) {
       state = ChapterItem.updateChapter(props, state);
@@ -59,32 +59,40 @@ class ChapterItem extends Component {
   render() {
     return (
       <>
-        {!this.props.chapter.contents != undefined &&
-          !(this.props.loadingChapter && !this.state.filtering) && (
-            <h1>{this.props.chapter.contents}</h1>
-          )}
-        <ChapterFilter
-          visible={
-            this.props.chapter.children != undefined &&
-            !this.props.loadingChapter
-          }
-          handleUpdateChapter={this.handleUpdateChapter}
-          handleFilterChapter={this.handleFilterChapter}
-        ></ChapterFilter>
-        <div className="demo">
-          {!this.props.loadingChapter &&
-            this.props.chapter.children != undefined &&
-            (this.props.chapter.children.length != 0 ? (
-              <>
-                {this.props.chapter.children.map((rule) => {
-                  return <RuleItem key={rule.name} rule={rule}></RuleItem>;
-                })}
-              </>
-            ) : (
-              this.props.chapter.children != undefined &&
-              this.props.chapter.children.length == 0 && <div></div>
-            ))}
-        </div>
+        {!this.props.chapterError ? (
+          <>
+            {!this.props.chapter.contents != undefined &&
+              !(this.props.loadingChapter && !this.state.filtering) && (
+                <h1>{this.props.chapter.contents}</h1>
+              )}
+
+            <ChapterFilter
+              visible={
+                this.props.chapter.children != undefined &&
+                !this.props.loadingChapter
+              }
+              handleUpdateChapter={this.handleUpdateChapter}
+              handleFilterChapter={this.handleFilterChapter}
+            ></ChapterFilter>
+
+            <div className="demo">
+              {!this.props.loadingChapter &&
+                this.props.chapter.children != undefined &&
+                (this.props.chapter.children.length != 0 ? (
+                  <>
+                    {this.props.chapter.children.map((rule) => {
+                      return <RuleItem key={rule.name} rule={rule}></RuleItem>;
+                    })}
+                  </>
+                ) : (
+                  this.props.chapter.children == undefined ||
+                  (this.props.chapter.children.length == 0 && <div></div>)
+                ))}
+            </div>
+          </>
+        ) : (
+          <h1>Chapter does not exist</h1>
+        )}
       </>
     );
   }

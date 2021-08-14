@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const fastify = require("fastify")({ logger: true });
 const routes = require("./routes");
 const path = require("path");

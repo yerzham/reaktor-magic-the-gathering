@@ -281,8 +281,10 @@ std::vector<RuleNode> RuleTextProcessor::find_chapter_rules(std::string chapter)
         to_string_cpy(s.contents, found, found_end);
         s.type = "rule";
 
-        for (int j = 1; j < 26; j++)
+        for (int j = 1; j <= 26; j++)
         {
+            if (j == 12 || j == 15)
+                continue;
             size_t subrule_length;
             char *subrule_id = create_subrule_id(rule_id + 1, j, subrule_length);
             found = strstr(found_end, subrule_id);

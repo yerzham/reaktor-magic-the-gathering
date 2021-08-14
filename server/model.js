@@ -5,6 +5,11 @@ const { isUndefined } = require("lodash");
 const util = require("util");
 const ms = require("ms");
 
+const Cache = require("./cache");
+
+const ttl = 60 * 60 * 1;
+const cache = new Cache(ttl);
+
 var cdata;
 
 function allData() {
@@ -16,7 +21,12 @@ function rule(r) {
 }
 
 function chapter(c) {
-  return isUndefined(cdata) ? undefined : RuleTextService.chapter(c);
+  return isUndefined(cdata)
+    ? undefined
+    : cache.get(c, () => {
+        const res = RuleTextService.chapter(c);
+        return res;
+      });
 }
 
 function chapterFiltered(c, f) {
@@ -36,18 +46,16 @@ var download = function (url, dest, cb) {
       if (response.statusCode === 200) {
         response.pipe(file);
         file.on("finish", function () {
-          file.close(cb); // close() is async, call cb after close completes.
+          file.close(cb);
         });
       }
       request.setTimeout(600, function () {
-        // if after 600ms file not downlaoded, we abort a request
         request.destroy();
         if (cb) cb("Download took too long");
       });
     })
     .on("error", function (err) {
-      // Handle errors
-      fs.unlink(dest); // Delete the file async. (But we don't check the result)
+      fs.unlink(dest);
       if (cb) cb(err.message);
     });
 };

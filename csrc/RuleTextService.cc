@@ -73,7 +73,7 @@ public:
                     {
                         v8::Local<v8::Object> chapterObj = object_from_rule_node(*it, filter);
                         v8::Local<v8::Array> children = v8::Local<v8::Array>::Cast(chapterObj->Get(isolate->GetCurrentContext(), Nan::New("children").ToLocalChecked()).ToLocalChecked());
-                        if (children->Length() != 0)
+                        if (children->Length() != 0 || contents.find(filter) != std::string::npos)
                         {
                             auto result = childrenValue->Set(isolate->GetCurrentContext(), i, chapterObj);
                             result.Check();

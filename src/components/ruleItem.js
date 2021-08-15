@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 
-const RuleItem = ({ rule }) => {
+const RuleItem = ({ rule, isSubrule }) => {
   const re = /([0-9]+\.[0-9]+[a-z]{0,1})|([0-9]{3,})/g;
 
   var matches = [];
@@ -18,7 +18,11 @@ const RuleItem = ({ rule }) => {
 
   return (
     <React.Fragment key={rule.name + "fragment1"}>
-      <p key={rule.name + "paragtaph"} id={rule.name}>
+      <p
+        key={rule.name + "paragtaph"}
+        id={rule.name}
+        style={isSubrule == true ? { paddingLeft: "15px" } : {}}
+      >
         {matches.map((match) => {
           return (
             <React.Fragment key={match.index + "fragment2"}>
@@ -42,7 +46,13 @@ const RuleItem = ({ rule }) => {
         {rule.contents.slice(pos)}
       </p>
       {rule.children.map((subrule) => {
-        return <RuleItem key={subrule.name} rule={subrule}></RuleItem>;
+        return (
+          <RuleItem
+            isSubrule={true}
+            key={subrule.name}
+            rule={subrule}
+          ></RuleItem>
+        );
       })}
     </React.Fragment>
   );

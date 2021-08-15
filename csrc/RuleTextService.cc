@@ -62,12 +62,23 @@ public:
                     std::string contents = it->contents;
                     std::for_each(contents.begin(), contents.end(), [](char &c)
                                   { c = ::tolower(c); });
-                    if (contents.find(filter) != std::string::npos)
+                    if (r.type != "chapter" && contents.find(filter) != std::string::npos)
                     {
                         v8::Local<v8::Object> chapterObj = object_from_rule_node(*it, filter);
                         auto result = childrenValue->Set(isolate->GetCurrentContext(), i, chapterObj);
                         result.Check();
                         i++;
+                    }
+                    else if (r.type == "chapter")
+                    {
+                        v8::Local<v8::Object> chapterObj = object_from_rule_node(*it, filter);
+                        v8::Local<v8::Array> children = v8::Local<v8::Array>::Cast(chapterObj->Get(isolate->GetCurrentContext(), Nan::New("children").ToLocalChecked()).ToLocalChecked());
+                        if (children->Length() != 0)
+                        {
+                            auto result = childrenValue->Set(isolate->GetCurrentContext(), i, chapterObj);
+                            result.Check();
+                            i++;
+                        }
                     }
                 }
             }

@@ -30,6 +30,8 @@ function chapter(c) {
 }
 
 function chapterFiltered(c, f) {
+  console.log(f);
+  console.log(RuleTextService.chapter_rules_containing(c, f));
   return isUndefined(cdata)
     ? undefined
     : RuleTextService.chapter_rules_containing(c, f);

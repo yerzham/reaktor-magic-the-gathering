@@ -1,14 +1,5 @@
-.btn {
-  cursor: "pointer";
-}
-
 .btn-link {
   text-align: left;
-  cursor: "pointer";
-}
-
-input {
-  cursor: "pointer";
 }
 
 .navbar {
@@ -48,6 +39,7 @@ input {
 .canvas {
   flex: 1 1 0;
   min-height: 100%;
+  width: 100%;
   position: relative;
   left: 0px;
   background-color: #cdfff2;

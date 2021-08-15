@@ -5,7 +5,16 @@ var readUrl =
 
 var fileRead = model.readFile(readUrl);
 
+function delay(t, val) {
+  return new Promise(function (resolve) {
+    setTimeout(function () {
+      resolve(val);
+    }, t);
+  });
+}
+
 fetchContents = async (request, reply) => {
+  // await delay(5000);
   try {
     if (fileRead) {
       var allData = model.allData();
@@ -23,6 +32,7 @@ fetchContents = async (request, reply) => {
 };
 
 fetchChapter = async (request, reply) => {
+  // await delay(5000);
   try {
     if (fileRead) {
       var chapterData;

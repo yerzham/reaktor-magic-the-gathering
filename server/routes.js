@@ -3,7 +3,7 @@ const { fetchContents, fetchChapter, fetchRule } = require("./controller");
 const routes = [
   {
     method: "GET",
-    url: "/api/",
+    url: "/api",
     schema: {
       response: {
         200: {

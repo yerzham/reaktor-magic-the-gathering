@@ -37,6 +37,7 @@ class ChapterItem extends Component {
 
   //setting necessary values on mounting of component
   componentDidMount() {
+    document.getElementById("canvas").scrollTop = 0;
     const listenWhileLoadToHash = store.subscribe(() => {
       if (!this.props.loadingChapter && window.location.hash) {
         const id = window.location.hash.replace("#", "");

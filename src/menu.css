@@ -1,5 +1,14 @@
+.btn {
+  cursor: "pointer";
+}
+
 .btn-link {
   text-align: left;
+  cursor: "pointer";
+}
+
+input {
+  cursor: "pointer";
 }
 
 .navbar {
@@ -60,10 +69,12 @@
   }
 }
 @media only screen and (max-width: 760px) {
+  .sidebar {
+    z-index: 999;
+  }
   .canvas {
     position: absolute;
     left: 0;
-    z-index: -999;
   }
 }
 

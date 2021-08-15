@@ -14,15 +14,15 @@ import store from "../redux/store/store";
 class ChapterItem extends Component {
   constructor(props) {
     super(props);
-    this.state = { filtering: false, prevChapter: null };
+    this.state = { filtering: false, chapterInView: null };
   }
 
   static updateChapter(props, state) {
     props.cancelChapterRequest();
     if (props.chapter.name != undefined && !window.location.hash)
       document.getElementById("canvas").scrollTop = 0;
-    state.prevChapter = props.match.params.chapter || "";
-    props.readChapter(state.prevChapter);
+    state.chapterInView = props.match.params.chapter || "";
+    props.readChapter(state.chapterInView);
     return state;
   }
 
@@ -37,24 +37,31 @@ class ChapterItem extends Component {
 
   //setting necessary values on mounting of component
   componentDidMount() {
-    this.setState(ChapterItem.updateChapter(this.props, this.state));
-    store.subscribe(() => {
-      if (!this.props.loadingChapter && this.state.filtering == true) {
-        this.setState({ filtering: false });
-      }
+    const listenWhileLoadToHash = store.subscribe(() => {
       if (!this.props.loadingChapter && window.location.hash) {
         const id = window.location.hash.replace("#", "");
         const element = document.getElementById(id);
-        element.scrollIntoView();
+        if (element != null) {
+          listenWhileLoadToHash();
+          element.scrollIntoView();
+        }
+      } else if (!window.location.hash) {
+        listenWhileLoadToHash();
+      }
+    });
+
+    store.subscribe(() => {
+      if (!this.props.loadingChapter && this.state.filtering) {
+        this.setState({ filtering: false });
       }
     });
   }
 
   static getDerivedStateFromProps(props, state) {
     if (
-      !props.loading &&
+      !props.loadingChapter &&
       props.match.params.chapter != undefined &&
-      props.match.params.chapter != state.prevChapter
+      props.match.params.chapter != state.chapterInView
     ) {
       state = ChapterItem.updateChapter(props, state);
     }

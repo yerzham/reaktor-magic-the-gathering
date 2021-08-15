@@ -55,6 +55,9 @@
     margin-right: 0;
     min-width: 100%;
   }
+  .canvas {
+    background-color: #e5fcf6;
+  }
 }
 @media only screen and (max-width: 760px) {
   .canvas {
